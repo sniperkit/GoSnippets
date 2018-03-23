@@ -56,8 +56,8 @@ func algr(la float64, lo float64, distance float64, radius float64) (cb *CoorBou
 	fin_lat_min := lat_min * 180 / math.Pi
 	fin_lat_max := lat_max * 180 / math.Pi
 	fin_lon_min := lon_min * 180 / math.Pi
-	//fin_lon_max := lon_max * 180 / math.Pi
-	fin_lon_max := (lo - fin_lon_min) + lo
+	fin_lon_max := lon_max * 180 / math.Pi
+	//fin_lon_max := (lo - fin_lon_min) + lo
 	//fmt.Println(lon_max)
 	obj := CoorBounding{min_lat:fin_lat_min, max_lat:fin_lat_max, min_lon:fin_lon_min, max_lon:fin_lon_max}
 	return &obj
