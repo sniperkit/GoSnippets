@@ -12,13 +12,14 @@ func main() {
 		var s runtime.MemStats
 		runtime.ReadMemStats(&s)
 		return s.Sys
+		// 通过runtime模块GC然后获取内存状况
 	}
 
-	var c <-chan interface{}
+	var c <-chan interface{} 
 	var wg sync.WaitGroup
-	noop := func() { wg.Done(); <-c}
+	noop := func() { wg.Done(); <-c} // 这样go协程在主线程退出之前不会退出
 
-	const numGoroutines = 1e4
+	const numGoroutines = 1e4 // 创建go协程数量
 	wg.Add(numGoroutines)
 	before := memConsumed()
 	for i := numGoroutines; i>0; i--{
